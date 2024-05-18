@@ -1,11 +1,7 @@
 import { Injectable } from '@angular/core';
-import { PaymentTransactionDto } from '../../api/transaction/payment-transaction-dto';
-import { TransactionApiService } from '../../api/transaction/transaction/transaction-api.service';
 import { Observable, map, tap } from 'rxjs';
-import {
-  PaginatedPaymentTransaction,
-  PaymentTransaction,
-} from './payment-transaction';
+import { TransactionApiService } from '../../api/transaction/transaction/transaction-api.service';
+import { PaymentTransaction } from './payment-transaction';
 
 @Injectable({
   providedIn: 'root',

@@ -1,16 +1,15 @@
-import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
-import { MatCardModule } from '@angular/material/card';
 import { RouterOutlet } from '@angular/router';
 import { Observable } from 'rxjs';
-import { TransactionService } from './features/transaction/transaction.service';
 import { PaymentTransaction } from './features/transaction/payment-transaction';
+import { TransactionService } from './features/transaction/transaction.service';
+import { ListComponent } from './features/transactions/list/list.component';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, CommonModule, MatCardModule],
+  imports: [RouterOutlet, CommonModule, ListComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css',
   providers: [TransactionService],
@@ -26,11 +25,12 @@ export class AppComponent implements OnInit {
     this.pageSize
   );
 
-  constructor(private transactionService: TransactionService, private breakpointObserver: BreakpointObserver) {}
+  constructor(
+    private transactionService: TransactionService,
+  ) {}
 
-  ngOnInit() {
-  }
-  
+  ngOnInit() {}
+
   getTransactions(
     page: number,
     pageSize: number

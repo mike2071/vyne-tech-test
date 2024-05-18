@@ -1,7 +1,9 @@
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { PaginatedPaymentTransactionDto, PaymentTransactionDto } from '../payment-transaction-dto';
+import {
+  PaginatedPaymentTransactionDto
+} from '../payment-transaction-dto';
 
 @Injectable({
   providedIn: 'root',
@@ -17,7 +19,6 @@ export class TransactionApiService {
     size: number,
     status = ''
   ): Observable<PaginatedPaymentTransactionDto> {
-  
     const headers = new HttpHeaders({
       Authorization: 'Basic ' + btoa(`${'user'}:${'userPass'}`),
     });

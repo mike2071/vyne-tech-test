@@ -1,0 +1,19 @@
+<div class="transaction-container">
+  <mat-card *ngFor="let transaction of transactions" class="transaction-card">
+    <mat-card-header>
+      <mat-card-title>{{ transaction.description }}</mat-card-title>
+      <mat-card-subtitle>{{
+        transaction.createdAt | date : "medium"
+      }}</mat-card-subtitle>
+    </mat-card-header>
+    <mat-card-content>
+      <p><strong>ID:</strong> {{ transaction.id }}</p>
+      <p>
+        <strong>Amount:</strong> {{ transaction.amount }}
+        {{ transaction.currency }}
+      </p>
+      <p><strong>Status:</strong> {{ transaction.status }}</p>
+    </mat-card-content>
+  </mat-card>
+</div>
+<h2>Hello child</h2>
