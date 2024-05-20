@@ -1,3 +1,37 @@
-<ng-container *ngIf="transactions$ | async as transactions">
-  <app-list [transactions]="transactions"></app-list>
-</ng-container>
+<button
+  mat-button
+  color="primary"
+  (click)="filterTransactionsByStatus('COMPLETED')"
+>
+  Primary
+</button>
+<button mat-button color="primary" (click)="removeFilter()">Reset</button>
+
+<ng-template #noTransactions>
+  <h2>There are no transactions to display</h2>
+</ng-template>
+
+<ng-container *ngIf="transactions.length; else noTransactions"></ng-container>
+<app-list [transactions]="transactions"></app-list>
+
+<mat-paginator
+  #paginator
+  class="demo-paginator"
+  (page)="handlePageEvent($event)"
+  [length]="totalNumberOfItems"
+  [pageSize]="pageSize"
+  [disabled]="disabled"
+  [showFirstLastButtons]="showFirstLastButtons"
+  [pageSizeOptions]="showPageSizeOptions ? pageSizeOptions : []"
+  [hidePageSize]="hidePageSize"
+  [pageIndex]="currentPage"
+  aria-label="Select page"
+>
+</mat-paginator>
+
+<div class="demo-data">
+  <div>
+    Output event: {{ (pageEvent | json) || "No events dispatched yet" }}
+  </div>
+  <div>getNumberOfPages: {{ paginator.getNumberOfPages() }}</div>
+</div>

@@ -15,3 +15,11 @@ export interface PaginatedPaymentTransaction {
   pageSize: number;
   totalNumberOfItems: number;
 }
+
+export interface PaginatedDetails  {
+  currentPage: number;
+  hasNext: boolean;
+  numberOfPages: number;
+  pageSize: number;
+  totalNumberOfItems: number;
+}

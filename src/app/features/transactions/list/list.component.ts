@@ -1,16 +1,21 @@
 import { CommonModule } from '@angular/common';
-import { Component, Input } from '@angular/core';
+import { Component, Input, ViewChild } from '@angular/core';
 import { MatCardModule } from '@angular/material/card';
+import {
+  MatPaginator,
+  MatPaginatorModule,
+  PageEvent,
+} from '@angular/material/paginator';
 
 @Component({
   selector: 'app-list',
   standalone: true,
-  imports: [CommonModule, MatCardModule, ListComponent],
+  imports: [CommonModule, MatCardModule, ListComponent, MatPaginatorModule],
   templateUrl: './list.component.html',
   styleUrl: './list.component.css',
 })
 export class ListComponent {
-  @Input() transactions = [
+   @Input() transactions = [
     {
       id: 'Dummy ID',
       amount: 0.0,
