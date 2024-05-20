@@ -4,7 +4,7 @@ export interface PaymentTransactionDto {
   currency: string;
   description: string;
   id: string;
-  status: 'COMPLETED' | 'CREATED' | 'SETTLED'; // Adjust enum values as needed
+  status: 'COMPLETED' | 'CREATED' | 'SETTLED' | 'CAPTURED'; // Adjust enum values as needed
 }
 
 export interface PaginatedPaymentTransactionDto {
