@@ -1,18 +1,26 @@
-<button
-  mat-button
-  color="primary"
-  (click)="filterTransactionsByStatus('COMPLETED')"
->
-  Primary
-</button>
-<button mat-button color="primary" (click)="removeFilter()">Reset</button>
-
 <ng-template #noTransactions>
   <h2>There are no transactions to display</h2>
 </ng-template>
+<mat-form-field>
+  <mat-label>Choose Status to Filter</mat-label>
+  <mat-select
+    matNativeControl
+    (selectionChange)="filterTransactionsByStatus($event.value)"
+  >
+    <mat-option value="NONE" selected>NONE</mat-option>
+    <mat-option *ngFor="let status of statuses" [value]="status">{{
+      status
+    }}</mat-option>
+  </mat-select>
+</mat-form-field>
 
-<ng-container *ngIf="transactions.length; else noTransactions"></ng-container>
-<app-list [transactions]="transactions"></app-list>
+<button mat-fab color="primary" (click)="removeFilter()">
+  <mat-icon>delete</mat-icon>
+</button>
+
+<ng-container *ngIf="transactions.length; else noTransactions">
+  <app-list [transactions]="transactions"></app-list>
+</ng-container>
 
 <mat-paginator
   #paginator
@@ -28,10 +36,3 @@
   aria-label="Select page"
 >
 </mat-paginator>
-
-<div class="demo-data">
-  <div>
-    Output event: {{ (pageEvent | json) || "No events dispatched yet" }}
-  </div>
-  <div>getNumberOfPages: {{ paginator.getNumberOfPages() }}</div>
-</div>

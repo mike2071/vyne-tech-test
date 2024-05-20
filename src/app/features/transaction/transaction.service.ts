@@ -2,7 +2,11 @@ import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable, map, tap } from 'rxjs';
 import { PaginatedPaymentTransactionDto } from '../../api/transaction/payment-transaction-dto';
 import { TransactionApiService } from '../../api/transaction/transaction/transaction-api.service';
-import { PaginatedDetails, PaginatedPaymentTransaction, PaymentTransaction } from './payment-transaction';
+import {
+  PaginatedDetails,
+  PaginatedPaymentTransaction,
+  PaymentTransaction,
+} from './payment-transaction';
 
 @Injectable({
   providedIn: 'root',
@@ -19,30 +23,34 @@ export class TransactionService {
 
   filteredTransactions$ = this.filteredTransactionsSubject.asObservable();
   paginatedTransactions$ = this.paginatedTransactionsSubject.asObservable();
-  transactions$ = this.transactionsSubject.asObservable();
+  statuses = ['COMPLETED', 'CREATED', 'SETTLED', 'CAPTURED'];
+  transactions$ = this.transactionsSubject
+    .asObservable()
+    .pipe(tap((x) => console.log('Transactions in Service: ', x)));
 
   constructor(private transactionApiService: TransactionApiService) {}
 
-  filterTransactions(status: string): void {
-    if(status === ''){
-      const result = this.transactionsSubject.value
-      this.filteredTransactionsSubject.next(result)
-    }
-
-    const hasStatus = [
-      'COMPLETED',
-      'CAPTURED',
-      'PENDING',
-      'FAILED',
-      'REFUNDED',
-    ].includes(status);
-
-    if (hasStatus) {
-      const result = this.transactionsSubject.value.filter(
-        (x) => x.status === status
-      );
+  filterTransactions(status: string): Observable<PaymentTransaction[]> {
+    // There is a simpler way to do this in the markup, but I can't remember and feel it's not too important
+    if (status === 'NONE') {
+      const result = this.transactionsSubject.value;
       this.filteredTransactionsSubject.next(result);
+
+      return this.filteredTransactions$;
+    } else {
+      const hasStatus = this.statuses.includes(status);
+
+      if (hasStatus) {
+        const result = this.transactionsSubject.value.filter(
+          (x) => x.status === status
+        );
+        this.filteredTransactionsSubject.next(result);
+
+        return this.filteredTransactions$;
+      }
     }
+
+    return this.transactions$;
   }
 
   getPaginationDetails(): PaginatedDetails {
@@ -75,9 +83,7 @@ export class TransactionService {
   }
 
   // Added for good measure
-  setPaginatedTransactions(
-    transactions: PaginatedPaymentTransactionDto
-  ): void {
+  setPaginatedTransactions(transactions: PaginatedPaymentTransactionDto): void {
     this.paginatedTransactionsSubject.next(transactions);
   }
 

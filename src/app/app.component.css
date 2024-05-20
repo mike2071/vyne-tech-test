@@ -5,3 +5,12 @@
   flex-wrap: wrap;
   gap: 16px;
 }
+
+.thing{
+  margin: 3%;
+  padding: 3%;
+}
+
+.mat-mdc-chip-set {
+  max-width: 200px;
+}
