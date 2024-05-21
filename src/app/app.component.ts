@@ -9,7 +9,7 @@ import { Observable, Subscription, tap } from 'rxjs';
 import {
   PaginatedPaymentTransaction,
   PaymentTransaction,
-} from './features/transaction/payment-transaction';
+} from './features/transaction/payment-transaction.model';
 import { TransactionService } from './features/transaction/transaction.service';
 import { ListComponent } from './features/transactions/list/list.component';
 

@@ -6,7 +6,7 @@ import {
   PaginatedDetails,
   PaginatedPaymentTransaction,
   PaymentTransaction,
-} from './payment-transaction';
+} from './payment-transaction.model';
 
 @Injectable({
   providedIn: 'root',
@@ -17,7 +17,7 @@ export class TransactionService {
   >([]);
   private paginatedTransactionsSubject =
     new BehaviorSubject<PaginatedPaymentTransaction>(
-      {} as PaginatedPaymentTransactionDto
+      {} as PaginatedPaymentTransaction
     );
   private transactionsSubject = new BehaviorSubject<PaymentTransaction[]>([]);
 
@@ -83,7 +83,7 @@ export class TransactionService {
   }
 
   // Added for good measure
-  setPaginatedTransactions(transactions: PaginatedPaymentTransactionDto): void {
+  setPaginatedTransactions(transactions: PaginatedPaymentTransaction): void {
     this.paginatedTransactionsSubject.next(transactions);
   }
 
