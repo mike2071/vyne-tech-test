@@ -1,14 +1,14 @@
-import { TestBed } from '@angular/core/testing';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { TestBed } from '@angular/core/testing';
+import { of } from 'rxjs';
+import { PaginatedPaymentTransactionDto } from '../../api/payment-transaction-dto';
+import { TransactionApiService } from '../../api/transaction/transaction-api.service';
 import {
   PaginatedDetails,
   PaginatedPaymentTransaction,
   PaymentTransaction,
 } from './payment-transaction.model';
 import { TransactionService } from './transaction.service';
-import { PaginatedPaymentTransactionDto } from '../../api/transaction/payment-transaction-dto';
-import { TransactionApiService } from '../../api/transaction/transaction/transaction-api.service';
-import { of } from 'rxjs';
 
 describe('TransactionService', () => {
   let service: TransactionService;

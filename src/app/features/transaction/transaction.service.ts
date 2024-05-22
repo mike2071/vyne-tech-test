@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable, map, tap } from 'rxjs';
-import { PaginatedPaymentTransactionDto } from '../../api/transaction/payment-transaction-dto';
-import { TransactionApiService } from '../../api/transaction/transaction/transaction-api.service';
+import { TransactionApiService } from '../../api/transaction/transaction-api.service';
 import {
   PaginatedDetails,
   PaginatedPaymentTransaction,

@@ -6,12 +6,12 @@ import { MatPaginatorModule, PageEvent } from '@angular/material/paginator';
 import { MatSelectModule } from '@angular/material/select';
 import { RouterOutlet } from '@angular/router';
 import { Observable, Subscription, tap } from 'rxjs';
+import { ListComponent } from './features/transaction/list/list.component';
 import {
   PaginatedPaymentTransaction,
   PaymentTransaction,
 } from './features/transaction/payment-transaction.model';
 import { TransactionService } from './features/transaction/transaction.service';
-import { ListComponent } from './features/transactions/list/list.component';
 
 @Component({
   selector: 'app-root',
@@ -31,7 +31,6 @@ import { ListComponent } from './features/transactions/list/list.component';
 })
 export class AppComponent implements OnInit, OnDestroy {
   // I try to avoid comments at all costs normally, I have added these for memory joggers and conversation points
-
   currentPage = 0;
   disabled = false;
   filteredTransactions: PaymentTransaction[] = [];
